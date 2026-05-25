@@ -24,7 +24,7 @@ GitHub Copilot の Usage Based Billing 移行において、管理者がやる�
 
 つまり、Copilot UBB 対応は「コスト削減」ではなく、「AI 利用に対する FinOps」の問題として捉えるべきである。
 
-GitHub Copilot Business / Enterprise は 2026年6月1日から Usage Based Billing に移行し、GitHub AI Credits を単位として Copilot の利用量が管理される。AI Credit の消費量は、利用するモデルと token 消費量によって決まる。([docs.github.com](https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-organizations-and-enterprises?utm_source=openai))
+GitHub Copilot Business / Enterprise は 2026年6月1日から Usage Based Billing に移行し、GitHub AI Credits を単位として Copilot の利用量が管理される。AI Credit の消費量は、利用するモデルとトークン消費量によって決まる。([docs.github.com](https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-organizations-and-enterprises?utm_source=openai))
 
 ---
 
@@ -50,7 +50,7 @@ GitHub は、管理者向けに Billing Preview と usage report CSV を提供�
 
 ## 2. コストが跳ね上がる主な要因
 
-Copilot UBB におけるコストは、主に「どのモデルを使うか」と「どれだけ token を消費するか」で決まる。GitHub Docs でも、軽量モデルを使った短い質問と、frontier model を使った長い coding agent session ではコストが異なると説明されている。([docs.github.com](https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-organizations-and-enterprises))
+Copilot UBB におけるコストは、主に「どのモデルを使うか」と「どれだけトークンを消費するか」で決まる。GitHub Docs でも、軽量モデルを使った短い質問と、frontier model を使った長い coding agent session ではコストが異なると説明されている。([docs.github.com](https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-organizations-and-enterprises))
 
 主なコスト増加要因としては、次のものが考えられる。
 
@@ -66,7 +66,7 @@ Claude Opus のような高性能・高コストなモデルを常用してい�
 
 ### Agent / Subagent の多段利用
 
-Subagent を複数チェーン的に呼び出す agentic workflow では、token 消費が増えやすい。
+Subagent を複数チェーン的に呼び出す agentic workflow では、トークン消費が増えやすい。
 
 特に、オーケストレーターとなる agent と配下の subagent がすべて高価なモデルを使っている場合、消費量が乗数的に増える可能性がある。
 
@@ -81,7 +81,7 @@ Subagent を複数チェーン的に呼び出す agentic workflow では、token
 
 ### System instruction / Custom instruction の肥大化
 
-Copilot が毎回参照する instruction や context が膨大になると、入力 token が増えやすくなる。
+Copilot が毎回参照する instruction や context が膨大になると、入力トークンが増えやすくなる。
 
 特に、次のような状態は見直し対象になる。
 
@@ -102,9 +102,9 @@ Copilot が毎回参照する instruction や context が膨大になると、�
 
 ### Tools / MCP / Web参照による context 増加
 
-MCP や外部 tool、Web ページ参照も token 消費の要因になり得る。
+MCP や外部 tool、Web ページ参照もトークン消費の要因になり得る。
 
-ただし、「MCP サーバーを常時起動していること」自体が必ず token 消費を生む、というより、問題は tool definition、schema、取得結果、Web ページ内容などが不必要に広く context に含まれることである。
+ただし、「MCP サーバーを常時起動していること」自体が必ずトークン消費を生む、というより、問題は tool definition、schema、取得結果、Web ページ内容などが不必要に広く context に含まれることである。
 
 したがって、見るべきポイントは次の通り。
 
